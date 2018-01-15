@@ -12,6 +12,10 @@ defineSupportCode(function({ Given, Then, When }) {
     answer = answer + input;
   });
 
+  When('I substruct {int}', function (input) {
+    answer = answer - input;
+  });
+
   When('I multiply by {int}', function (input) {
     answer = answer * input;
   });
