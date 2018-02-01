@@ -4,8 +4,7 @@
   "description": "https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cucumber": "cucumber.js ./features -r ./steps"
+    "test": "cucumber.js ./features -r ./steps"
   },
   "author": "dragan.d.nikolic@gmail.com",
   "license": "ISC",
