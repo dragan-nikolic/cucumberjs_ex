@@ -11,6 +11,7 @@ defineSupportCode(function({ Given, Then, When }) {
   });
 
   Then('I should see GameClient app open', async function () {
+    await this.app.stop();
   });
 
   When('I enter email {string} and password {string}', async function (email, password) {
