@@ -4,7 +4,7 @@
   "description": "Demo how to use cucumber and spectron for an electron app",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/cucumber.js ./features -r ./steps"
+    "test": "./node_modules/.bin/cucumber-js -r ./steps -r ./support"
   },
   "author": "dragan.d.nikolic@gmail.com",
   "license": "ISC",

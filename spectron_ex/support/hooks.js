@@ -9,5 +9,6 @@ BeforeAll(function () {
 
 // Asynchronous
 AfterAll(async function () {
+  console.log('***** after all');
   await this.app.stop();
 });
