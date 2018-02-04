@@ -1,14 +1,10 @@
-const {AfterAll, BeforeAll} = require('cucumber');
+const {After, Before} = require('cucumber');
 
-let app = undefined;
-
-// Synchronous
-BeforeAll(function () {
-  // perform some shared setup
+Before(async function (testCase) {
+  console.log(`***** before ${testCase.pickle.name}`);
 });
 
-// Asynchronous
-AfterAll(async function () {
-  console.log('***** after all');
+After(async function (testCase) {
+  console.log(`***** after ${testCase.pickle.name}`);
   await this.app.stop();
 });
