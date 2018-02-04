@@ -6,4 +6,9 @@ the same using Cucumber and Spectron.
 
 To run succesfully in Windows use following format:
 - Make sure no GC client instance is already running, then
-$ npm test .\features\gc_login.feature:2
+$ npm test .\features\gc_login.feature
+
+References:
+- [cucumberjs](https://github.com/cucumber/cucumber-js)
+- [cucumberjs|https://github.com/cucumber/cucumber-js]
+
