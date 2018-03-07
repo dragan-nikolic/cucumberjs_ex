@@ -1,0 +1,17 @@
+{
+  "name": "sitepoint_ex",
+  "version": "1.0.0",
+  "description": "https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber.js ./features -r ./steps"
+  },
+  "author": "dragan.d.nikolic@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "cucumber": "^3.2.1",
+    "node-fetch": "^1.7.3",
+    "request": "^2.83.0",
+    "trae": "^1.4.2"
+  }
+}
