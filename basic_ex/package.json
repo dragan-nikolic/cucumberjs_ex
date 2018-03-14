@@ -4,13 +4,11 @@
   "description": "https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/cucumber-js -r ./steps -r"
+    "test": "./node_modules/.bin/cucumber-js -r ./steps"
   },
   "author": "dragan.d.nikolic@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "cucumber": "^3.2.1",
-    "request": "^2.83.0",
-    "trae": "^1.4.2"
+    "cucumber": "^3.2.1"
   }
 }

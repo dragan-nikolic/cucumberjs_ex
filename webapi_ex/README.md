@@ -1,17 +1,12 @@
-# BDD in JavaScript: Getting Started with Cucumber and Gherkin
+# Test Web API using Cucumber and trae
 
-https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/
+Demonstrates how to use trae package to test web api.
+Also uses request package to do the same and comapre the two.
 
 Note: to be able to run tests you need to run server part of the Tab Tracker app - git@github.com:dragan-nikolic/tab-tracker.git. 
-
-Go to server directory then run:
+- Start Tab Tracker server (got to server directory then run):
     - npm run seed
     - npm start
 
-Note 2: Running tests using command 'npm test' in Windows does not work.
-The following error is generated: 
-  'Windows Script Host'
-  Error: Invalid character
-
-To run succesfully in Windows use following format:
-$ ./node_modules/.bin/cucumber.js -r /steps/ ...
+Run tests: 
+$ npm test
