@@ -11,6 +11,7 @@ Feature: Addition
     When I add 1
     Then I end up with 2
 
+  # Second exmaple is supposed to fail
   Scenario Outline: Add two numbers
     Given I start with <num1>
     When I add <num2>
