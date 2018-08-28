@@ -14,24 +14,20 @@ BeforeAll(async function() {
 // Runs only once after the last test completes
 // Note: 'this' is not defined here. Only scenarios have it.
 AfterAll(async function() {
-  console.log(' ');
   console.log('***** afterAll');
 });
 
 // Runs before each scenario
 Before(async function (scenario) {
-  console.log(' ');
   console.log(`***** before ${scenario.pickle.name}`);
 });
 
 // Runs after each scenario
 After(async function (scenario) {
-  console.log(' ');
   console.log(`***** after ${scenario.pickle.name}`);
 });
 
 // This hook will be executed before scenarios with the given tag
 Before({tags: "@mytag"}, async function (scenario) {
-  console.log(' ');
   console.log(`***** before mytag ${scenario.pickle.name}`);
 });

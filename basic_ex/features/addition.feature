@@ -10,3 +10,14 @@ Feature: Addition
     Given I start with 1
     When I add 1
     Then I end up with 2
+
+  # Second exmaple is supposed to fail
+  Scenario Outline: Add two numbers
+    Given I start with <num1>
+    When I add <num2>
+    Then I end up with <result>
+
+    Examples:
+    | num1 | num2 | result |
+    | 5    | 4    | 9      |
+    | 6    | -2   | 3      |
