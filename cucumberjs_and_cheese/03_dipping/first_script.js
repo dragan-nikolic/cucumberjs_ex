@@ -1,3 +1,7 @@
+/*
+Run: $ node <file>.js
+*/
+
 (async function() {
 // async wrapper begin
 

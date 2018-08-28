@@ -1,7 +1,8 @@
-progress p.16 cucumber and cheese
+progress p.40 Adopting two puppies
 
 # Cucumberjs and Cheese
-Based on the book Cucumber and Cheese by Jeff Morgan
+Based on the book Cucumber and Cheese by Jeff Morgan.
+Testing http://puppies.herokuapp.com/
 
 ## Prerequisites ##
 * Nodejs version 8.9.4 or newer and NPM version 5.6.0 or newer
