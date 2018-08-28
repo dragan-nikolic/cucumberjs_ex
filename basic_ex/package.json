@@ -9,6 +9,6 @@
   "author": "dragan.d.nikolic@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "cucumber": "^3.2.1"
+    "cucumber": "^4.2.1"
   }
 }

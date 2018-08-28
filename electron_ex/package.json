@@ -9,7 +9,7 @@
   "author": "dragan.d.nikolic@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "cucumber": "^3.2.1",
-    "spectron": "^3.7.2"
+    "cucumber": "^4.2.1",
+    "spectron": "^3.8.0"
   }
 }

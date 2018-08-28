@@ -8,9 +8,10 @@
   },
   "author": "dragan.d.nikolic@gmail.com",
   "license": "ISC",
-  "devDependencies": {
-    "cucumber": "^3.2.1",
-    "request": "^2.83.0",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cucumber": "^4.2.1",
+    "request": "^2.88.0",
     "trae": "^1.4.2"
   }
 }
