@@ -3,20 +3,16 @@ Run: $ node <file>.js
 */
 
 (async function() {
-  // async wrapper begin
-  
-  const webdriverio = require('webdriverio')
-  
-  async function clickOnItem(browser, selector, index) {
-    const elements = await browser.elements(selector)
-    await browser.elementIdClick(elements.value[index].ELEMENT)
-  }
-  
-  async function adoptPuppyNumber(browser, number) {
-    await clickOnItem(browser, '[value="View Details"]', number)
-    await browser.click('[value="Adopt Me!"]')
-  }
+// async wrapper begin
 
+const webdriverio = require('webdriverio')
+
+async function clickOnItem(selector, index) {
+  const elements = await browser.elements(selector)
+  await browser.elementIdClick(elements.value[index].ELEMENT)
+}
+
+async function gotoPuppyAdoptionSite() {
   // create  webdriver
   const options = { 
     desiredCapabilities: { 
@@ -24,23 +20,44 @@ Run: $ node <file>.js
     } 
   }
   
-  const browser = webdriverio.remote(options)
+  global.browser = webdriverio.remote(options)
   await browser.init()
   await browser.url('http:/puppies.herokuapp.com')
-  
-  await adoptPuppyNumber(browser, 1)
+}
+
+async function adoptPuppyNumber(number) {
+  await clickOnItem('[value="View Details"]', number)
+  await browser.click('[value="Adopt Me!"]')
+}
+
+async function continueAdoptingPuppies() {
   await browser.click('[value="Adopt Another Puppy"]')
-  await adoptPuppyNumber(browser, 2)
+}
+
+async function checkoutWith(name, address, email, payType) {
   await browser.click('[value="Complete the Adoption"]')
-  await browser.setValue('#order_name', 'Cheese')
-  await browser.setValue('#order_address', '123 Main St.')
-  await browser.setValue('#order_email', 'cheese@foo.com')
-  await browser.selectByValue('#order_pay_type', 'Check')
+  await browser.setValue('#order_name', name)
+  await browser.setValue('#order_address', address)
+  await browser.setValue('#order_email', email)
+  await browser.selectByValue('#order_pay_type', payType)
   await browser.click('[value="Place Order"]')
+}
+
+async function verifyThankyouNote() {
   await browser.waitForExist('#notice=Thank you for adopting a puppy!', 5000)
-  
+}
+
+async function closeTheBrowser() {
   await browser.end()
-  
-  // async wrapper end
-  })()
-  
+}
+
+await gotoPuppyAdoptionSite()  
+await adoptPuppyNumber(1)
+await continueAdoptingPuppies()
+await adoptPuppyNumber(2)
+await checkoutWith('Cheezy', '123 Main St', 'cheezy@foo.com', 'Check')
+await verifyThankyouNote()
+await closeTheBrowser()  
+
+// async wrapper end
+})()
