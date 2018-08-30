@@ -1,4 +1,4 @@
-progress p.40 Adopting two puppies
+progress p.48 (4. Cucumkber & Puppies) 
 
 # Cucumberjs and Cheese
 Based on the book Cucumber and Cheese by Jeff Morgan.
