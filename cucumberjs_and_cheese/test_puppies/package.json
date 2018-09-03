@@ -1,0 +1,16 @@
+{
+  "name": "test_puppies",
+  "version": "1.0.0",
+  "description": "End to end tests for Puppy Adoption Agency  web site",
+  "main": "none",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dragan Nikolic (dragan.d.nikolic@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "cucumber": "^4.2.1",
+    "selenium-standalone": "^6.15.2",
+    "webdriverio": "^4.13.2"
+  }
+}
