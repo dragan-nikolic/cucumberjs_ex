@@ -6,4 +6,4 @@ Feature: Making Cheese
   Scenario: Using the cheese machine
     Given I have no cheese
     When I press the make cheese button
-    Then I should have 1 piece of Chees
+    Then I should have 1 piece of Cheese
