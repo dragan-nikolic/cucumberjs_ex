@@ -1,0 +1,14 @@
+{
+  "name": "simple_cuke",
+  "version": "1.0.0",
+  "description": "Simple cucumber demo",
+  "main": "none",
+  "scripts": {
+    "test": "./node_modules/.bin/cucumber-js"
+  },
+  "author": "Dragan Nikolic (dragan.d.nikolic@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "cucumber": "^4.2.1"
+  }
+}
