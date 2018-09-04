@@ -43,9 +43,10 @@ About to write to C:\dev\github\cucumberjs_ex\cucumberjs_and_cheese\test_puppies
 Is this ok? (yes)
 ```
 
-* Now run 'npm install cucumber selenium-standalone webdriverio --save'
+* Now run `npm install cucumber selenium-standalone webdriverio --save`
 * Next, create following directory structure:
 
+```
   test_puppies
   +-+ features
     + step_definitions
@@ -56,6 +57,7 @@ Is this ok? (yes)
   + cucumber.js
   + package-lock.json
   + package.json
+```
 
 The first thing you will notice about our cucumber project is that there is a 
 single directory at the root of the project named features. This directory is 
