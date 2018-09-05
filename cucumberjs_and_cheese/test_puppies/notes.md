@@ -43,7 +43,7 @@ About to write to C:\dev\github\cucumberjs_ex\cucumberjs_and_cheese\test_puppies
 Is this ok? (yes)
 ```
 
-* Now run `npm install cucumber selenium-standalone webdriverio --save`
+* Now run: `$ npm install cucumber selenium-standalone webdriverio --save`
 * Next, create following directory structure:
 
 ```
@@ -123,3 +123,75 @@ Warnings:
 npm ERR! Test failed.  See above for more details.
 ```
 
+Cucumber is informing us that there are no step definitions for the scenario. It is also providing
+a starting point for you to implement those steps. Aha! 
+[Step Definitions](https://docs.cucumber.io/cucumber/step-definitions/). These are what make
+Cucumber scripts executable, automated tests. This is where high-level feature DSL is converted to
+lower-level JavaScript code, so we can actually run it, and watch it turn green, proving that not 
+only are we Building Something Right, we are Building the Right Thing!
+Awesome! Let’s create a new file in the step_definitions directory named making_cheese_steps.rb. 
+Copy the step definitions provided by cucumber to that file. When you run the cucumber
+command again you should see something slightly different.
+
+```
+λ npm test features/making_cheese.feature
+
+> simple_cuke@1.0.0 test C:\devh\github\cucumberjs_ex\cucumberjs_and_cheese\04_simple_cuke
+> cucumber-js "features/making_cheese.feature"
+
+Before: scenario Using the cheese machine
+After: scenario Using the cheese machine pending
+Warnings:
+
+1) Scenario: Using the cheese machine # features\making_cheese.feature:6
+   √ Before # features\support\hooks.js:3
+   ? Given I have no cheese # features\step_definitions\making_cheese_steps.js:4
+       Pending
+   - When I press the make cheese button # features\step_definitions\making_cheese_steps.js:9
+   - Then I should have 1 piece of Cheese # features\step_definitions\making_cheese_steps.js:14
+   √ After # features\support\hooks.js:7
+
+1 scenario (1 pending)
+3 steps (1 pending, 2 skipped)
+0m00.015s
+npm ERR! Test failed.  See above for more details.
+```
+
+Here you can see that it found the steps but indicated that the first step was pending (Here, pending
+means "not yet fully implemented in code"). As a result it skipped the remaining steps. When
+cucumber runs into a step that is pending it does not continue running the scenario. We can easily
+resolve this. Let’s write some place-holder code to make the steps run.
+
+```
+Given('I have no cheese', function () {
+  console.log('I am so sad. I have no cheese :(')
+})
+
+When('I press the make cheese button', function () {
+  console.log('There is hope. I hope this machine works')
+})
+
+Then('I should have {int} piece of Cheese', function (numPieces) {
+  console.log(`Rejoice! We have ${numPieces} pieces of cheese.`)
+})
+```
+
+Notice that I have renamed the arg1 parameter in the third step definition to num_pieces.
+This is to add clarity. Let’s run the scenario again. This time you will notice that the scenario passes
+and the messages are printed to the screen.
+
+You might be asking yourself why this scenario is passing. We haven’t actually done anything yet
+so why should it work? Well cucumber is following the same pattern we saw when we wrote the
+Watir scripts in the last chapter. It is assuming success until either it encounters a code error or an
+assertion fails. So, yes, we have a Cucumber test that doesn’t actually prove that we make cheese.
+Which of course is inherently bad, since we have established that we really like cheese.
+
+But remember that we also like puppies, and in that problem domain, we have a puppy adoption
+site. We’ve already written Watir tests to prove that we can adopt a puppy. We may not be able to
+adopt a cheese, but we can definitely adopt a puppy. And we can use Cucumber tests to prove that
+indeed this occurs, and to do so at the puppy-adoption feature level.
+
+We can combine the WHAT, WHY, and HOW of puppy adoption in our next Cucumber tests. Joy!
+We will see how this all comes together in the next section.
+
+### Adopting a puppy with cucumber ###
