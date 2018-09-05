@@ -1,6 +1,6 @@
 ## 4 Cucumber & Puppies ##
 
-### Our first Cuumber project ###
+### Our first Cucumber project ###
 
 * First run 'npm init'
 
@@ -43,7 +43,7 @@ About to write to C:\dev\github\cucumberjs_ex\cucumberjs_and_cheese\test_puppies
 Is this ok? (yes)
 ```
 
-* Now run: `$ npm install cucumber selenium-standalone webdriverio --save`
+* Now run: `$ npm install cucumber --save`
 * Next, create following directory structure:
 
 ```
@@ -51,7 +51,6 @@ Is this ok? (yes)
   +-+ features
     + step_definitions
     + support
-      + pages
       + hooks.js
       + world.js
   + cucumber.js
@@ -65,11 +64,13 @@ where all of your cucumber feature files will reside. In this directory you will
 find two additional directories. They are step_definitions and support. The 
 step_definitions directory is empty at this time. The support directory has two 
 files hooks.js and world.js. Let’s take a quick look at them.
-world.js setup the custom world object, which creates webdriver object.
+world.js setup the custom 
+[world](https://github.com/cucumber/cucumber-js/blob/master/docs/support_files/world.md) object if 
+we need it.
 In the hooks file you can see that we have a Before block and an After block. 
-The Before block is run before each test and is initiating the webdriver object. 
-We’ve seen this code before. The After block runs after each test and here it is 
-closing the webdriver.
+The Before block is run before each test and setup the single test environment (e.g. initiates the 
+webdriver object). We’ve seen this code before. The After block runs after each test and perform
+the test clenup (e.g. closing the webdriver).
 There are other files in our project in addition to the files under the features 
 directory. We’ll be covering them in later sections of the book.
 
@@ -195,3 +196,38 @@ We can combine the WHAT, WHY, and HOW of puppy adoption in our next Cucumber tes
 We will see how this all comes together in the next section.
 
 ### Adopting a puppy with cucumber ###
+
+Now it is time to write a cucumber feature that does something more interesting than the feature we
+created in the last section. In this section we will write a feature that adopts a puppy. Create
+test_puppies directory and all supporting files and directories as explained at the beginning of
+this section. Since we are going to use webdriver we should install it and add it to our 
+package.json.
+
+`$ npm install webdriverio selenium-standalone --save-dev`
+
+Then create a new file named adopting_puppies.feature in the features directory. Our feature file 
+should begin like this:
+
+```
+Feature: Adopting puppies
+
+  As a puppy lover
+  I want to adopt puppies
+  So they can chew my furniture
+```
+
+This is a good start. Now we need to begin writing the first Scenario. Let’s start with this:
+
+```
+Scenario: Adopting one puppy
+  Given I am on the puppy adoption site
+  When I click the View Details button
+  And I click the Adopt Me button
+  And I click the Complete the Adoption button
+  And I enter "Cheezy" in the name field
+  And I enter "123 Main Street" in the address field
+  And I enter "cheezy@example.com" in the email field
+  And I select "Credit card" from the pay with dropdown
+  And I click the Place Order button
+  Then I should see "Thank you for adopting a puppy!"
+```
