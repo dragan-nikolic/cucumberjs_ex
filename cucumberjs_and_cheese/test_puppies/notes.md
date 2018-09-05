@@ -177,7 +177,7 @@ Then('I should have {int} piece of Cheese', function (numPieces) {
 })
 ```
 
-Notice that I have renamed the arg1 parameter in the third step definition to num_pieces.
+Notice that I have renamed the 'int' parameter in the third step definition to numPieces.
 This is to add clarity. Let’s run the scenario again. This time you will notice that the scenario passes
 and the messages are printed to the screen.
 
