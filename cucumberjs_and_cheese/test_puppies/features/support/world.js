@@ -20,7 +20,7 @@ function CustomWorld({attach, parameters}) {
       browserName: parameters.browser 
     } 
   }
-  this.webdriver = webdriver.remote(options)
+  this.browser = webdriver.remote(options)
 }
 
 cucumber.setWorldConstructor(CustomWorld)
