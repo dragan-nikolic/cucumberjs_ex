@@ -231,3 +231,20 @@ Scenario: Adopting one puppy
   And I click the Place Order button
   Then I should see "Thank you for adopting a puppy!"
 ```
+
+Now go ahead and generate the step definitions by running the newly created feature file.
+Place the step definitions in a file named adopting_puppy_steps.js in the step_definitions
+directory and rename the variables to something more meaningful. After the step definitions are
+generated I would like you to try to complete the script to make the Scenario run successfully. Here
+is the completed first step:
+
+```
+Given /^I am on the puppy adoption site$/ do
+  @browser.goto "http://puppies.herokuapp.com"
+end
+```
+
+Try to complete all of the remaining steps without referring to the work we did in the last chapter.
+Repetition will help us learn the Watir syntax and make us better automated testers. When you are
+finished go ahead and run the Feature. If you have a failure, correct it and try again until the 
+script runs all of the way through.
