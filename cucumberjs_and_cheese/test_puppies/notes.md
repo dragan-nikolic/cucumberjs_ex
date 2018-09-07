@@ -331,10 +331,10 @@ data. The Examples portion of your script will look something like:
 
 ```
   Examples:
-  | name | address | email | pay_type |
-  | Cheezy | 123 Main St | cheezy@example.com| Credit card |
-  | Joseph | 555 South St| joe@guru.com | Check |
-  | Jared | 234 Leandog | doc@dev.com | Purchase order|
+  | name   | address     | email             | pay_type      |
+  | Cheezy | 123 Main St | cheezy@example.com| Credit card   |
+  | Joseph | 555 South St| joe@guru.com      | Check         |
+  | Jared  | 234 Leandog | doc@dev.com       | Purchase order|
 ```
 
 Notice, by the way, that once a Product Owner is accustomed to the sets of inputs to a Scenario, this
@@ -345,3 +345,31 @@ very pragmatic about the tests we add. We want each new test to help us learn so
 the system we are testing. Exercising the same code in the exact same way over and over again does
 not expand our understanding nor does it help us discover new defects.
 
+### Background ###
+
+Our Scenarios have some duplication that we want to address. Both of them begin with the same
+Step:
+
+`Given I am on the puppy adoption site`
+
+Since we have learned that duplication is evil we should find a way to eliminate this travesty.
+Luckily cucumber has a solution. It is call [Background](https://docs.cucumber.io/gherkin/reference/#background). Think of it as a step or set of steps that are
+executed prior to each Scenario. Using a Background the duplication in our Scenarios is eliminated
+and we end up with:
+
+```
+Background:
+  Given I am on the puppy adoption site
+
+Scenario: Adopting one puppy
+  When I click the "first" View Details button
+  ...
+
+Scenario: Adopting two puppies
+  When I click the "first" View Details button
+  ...
+```
+
+Now that feels better, doesn’t it.
+
+### Verify the shopping cart ###
