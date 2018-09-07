@@ -373,3 +373,9 @@ Scenario: Adopting two puppies
 Now that feels better, doesn’t it.
 
 ### Verify the shopping cart ###
+
+We are off to a good start with cucumber but so far our tests haven’t really tested much. We are
+about to change that. In this section we will write some Scenarios that will test our shopping cart
+page. Let’s look at an example shopping cart.
+
+![Litter Page](litter_page.png)
