@@ -10,6 +10,6 @@
   "license": "ISC",
   "devDependencies": {
     "cucumber": "^4.2.1",
-    "spectron": "^3.8.0"
+    "spectron": "^4.0.0"
   }
 }
