@@ -239,9 +239,9 @@ generated I would like you to try to complete the script to make the Scenario ru
 is the completed first step:
 
 ```
-Given /^I am on the puppy adoption site$/ do
-  @browser.goto "http://puppies.herokuapp.com"
-end
+Given('I am on the puppy adoption site', async function () {
+  await this.browser.url('http://puppies.herokuapp.com/')
+})
 ```
 
 Try to complete all of the remaining steps without referring to the work we did in the last chapter.
