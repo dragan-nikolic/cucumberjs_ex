@@ -288,3 +288,60 @@ the first Scenario that clicked the first view details button. When we see this 
 a good idea to remove it. Please change the first scenario to use the step When I click the first View
 Details button and then remove the step definition for the generic method so it no longer exists in
 your step definition file.
+
+### Scenario Outlines ###
+
+Cucumber has another type of Scenario called a [Scenario Outline](https://docs.cucumber.io/gherkin/reference/#scenario-outline) that relies on the Example
+keyword. It allows us to separate out the small tables of example data used in the Scenario from
+the description of the steps in the Scenario and thereby run it with multiple sets of data. This is very
+useful for situations when you have a single path through the application that you wish to run with
+different sets of example data. These different examples might test different subtle behaviors in our
+code. So we are reusing the same test code, but substituting different rows of example data for each
+test execution. It is yet another trick to help us keep the code D.R.Y. (that is, without unnecessary
+duplication).
+
+Scenario Outlines take this form:
+
+```
+Scenario Outline: Using the cheese machine
+  Given I have no Cheese
+  When I press the make "<type>" cheese button
+  Then I should see the "<message>" message
+
+  Examples:
+  | type | message |
+  | Swiss | I love Swiss cheese |
+  | Blue | I love Blue cheese |
+  | Cheddar | I love Cheddar cheese |
+```
+
+As you can see, Scenario Outlines have two parts. The first is the outline which provides the steps for
+the test and the second is the data used in the steps. These two parts are bound together by variables
+that are replaced when the Scenario runs. The variables are defined in the steps with angle brackets
+like <name>. This is matched with a heading in the Examples section and the value for each row is
+inserted into the step.
+
+The Scenario above will run three times. The first time the type variable will be replaced with the
+word Swiss and the message variable will be replace with I love Swiss cheese. The second time the
+Scenario is run it will use the data from the second row and so on.
+
+For your next assignment I want you to rewrite the first Scenario in our adopt puppies file to make
+it a Scenario Outline and provide three Examples so it will run with three different complete sets of
+data. The Examples portion of your script will look something like:
+
+```
+  Examples:
+  | name | address | email | pay_type |
+  | Cheezy | 123 Main St | cheezy@example.com| Credit card |
+  | Joseph | 555 South St| joe@guru.com | Check |
+  | Jared | 234 Leandog | doc@dev.com | Purchase order|
+```
+
+Notice, by the way, that once a Product Owner is accustomed to the sets of inputs to a Scenario, this
+Examples table becomes a succinct way for them to see that several different scenarios are being
+tested. It is a handy shortand for data-intensive testing situations.
+At the same time, running a lot of data through the system is not always a good idea. We should be
+very pragmatic about the tests we add. We want each new test to help us learn something new about
+the system we are testing. Exercising the same code in the exact same way over and over again does
+not expand our understanding nor does it help us discover new defects.
+
