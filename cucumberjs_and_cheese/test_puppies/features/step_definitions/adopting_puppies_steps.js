@@ -5,13 +5,22 @@ Given('I am on the puppy adoption site', async function () {
   await this.browser.url('http://puppies.herokuapp.com/')
 })
 
-When('I click the View Details button', async function () {
+When('I click the {string} View Details button', async function (ordinalNumber) {
+  const ordinalNumberToIndex = {
+    'first': 0,
+    'second': 1,
+    'third': 2
+  }
   const elements = await this.browser.elements('[value="View Details"]')
-  await this.browser.elementIdClick(elements.value[0].ELEMENT)
+  await this.browser.elementIdClick(elements.value[ordinalNumberToIndex[ordinalNumber]].ELEMENT)
 })
 
 When('I click the Adopt Me button', async function () {
   await this.browser.click('[value="Adopt Me!"]')
+})
+
+When('I click the Adopt Another Puppy button', async function () {
+  await this.browser.click('[value="Adopt Another Puppy"]')
 })
 
 When('I click the Complete the Adoption button', async function () {

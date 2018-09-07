@@ -248,3 +248,43 @@ Try to complete all of the remaining steps without referring to the work we did 
 Repetition will help us learn the Watir syntax and make us better automated testers. When you are
 finished go ahead and run the Feature. If you have a failure, correct it and try again until the 
 script runs all of the way through.
+
+### Adopting two puppies ###
+
+Let’s write a second Scenario in the directly below the first Scenario and call it “Adopting two
+puppies”. As you might guess, we want this new Scenario to adopt two puppies and complete the
+order. Your Scenario should be nearly identical to the previous Scenario.
+
+One problem we need to address is specifying that we will click different View Details buttons. In
+the first scenario we just stated that we clicked the View Details button but for this scenario we will
+need to say that we click the first View Details button and the second View Details button.
+
+After you are finished writing the second Scenario I suggest you change the first Scenario to state
+that you click the first View Details button and then go ahead and update the step definitions file to
+reflect the new syntax. You will also need to update the Webdriver call to add the `index` parameter in
+order to click the correct button. The new Scenario should look like this:
+
+```
+Scenario: Adopting two puppies
+  Given I am on the puppy adoption site
+  When I click the first View Details button
+  And I click the Adopt Me button
+  And I click the Adopt Another Puppy button
+  And I click the second View Details button
+  And I click the Adopt Me button
+  And I click the Complete the Adoption button
+  And I enter "Cheezy" in the name field
+  And I enter "123 Main Street" in the address field
+  And I enter "cheezy@example.com" in the email field
+  And I select "Credit card" from the pay with dropdown
+  And I click the Place Order button
+  Then I should see "Thank you for adopting a puppy!"
+```
+
+Go ahead and generate the step definition and implement the methods. As you see, we were able to
+reuse much of the previous step definitions in this new Scenario. The two steps that we did have to
+create were the ones that clicked the first and second view details buttons. We already had a step in
+the first Scenario that clicked the first view details button. When we see this sort of duplication it is
+a good idea to remove it. Please change the first scenario to use the step When I click the first View
+Details button and then remove the step definition for the generic method so it no longer exists in
+your step definition file.
