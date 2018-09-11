@@ -378,4 +378,25 @@ We are off to a good start with cucumber but so far our tests haven’t really t
 about to change that. In this section we will write some Scenarios that will test our shopping cart
 page. Let’s look at an example shopping cart.
 
-![Litter Page](litter_page.png)
+|![Litter Page](litter_page.png)|
+|:---:|
+|Your Litter Page|
+
+Looking at this shopping cart what Scenarios do you think we need to specify this page and verify
+correctness?
+
+There are numerous Scenarios necessary to specify this page but for this section I would like you to
+write two.
+
+1. Verify the shopping cart with one puppy.
+2. Verify the shopping cart with two puppies.
+
+In each Scenario I would like you to validate the puppy’s name, the subtotal for the adoption, and
+the shopping cart total.
+
+The shopping cart data is stored in an html table. The table does not have an id, name, or any other
+identifier. What do you think you can use to locate the table? If you said index you are correct.
+
+You can access the fields in a table by using rows and columns. For example, to access the first row
+and second column you would do the following:
+
