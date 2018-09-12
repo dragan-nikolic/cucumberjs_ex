@@ -395,8 +395,19 @@ In each Scenario I would like you to validate the puppy’s name, the subtotal f
 the shopping cart total.
 
 The shopping cart data is stored in an html table. The table does not have an id, name, or any other
-identifier. What do you think you can use to locate the table? If you said tag you are correct.
+identifier. What do you think you can use to locate the table and its fields? If you said tag and 
+index you are correct.
 
-You can access the fields in a table by using rows and columns. For example, to access the first row
-and second column you would do the following:
+For example, to access shopping cart 'Your Litter' you can use WebdriverIO selector
+`'table tbody tr td'`:
+    `cartTableFields = browser.elements('table tbody tr td')`
 
+This call returns all `<td>` elements on the page, and each `<td>` element represent a field in the
+table.
+
+This table has 18 elements per item (i.e. per puppy). 4 elements for first row that contains
+puppy image, name, gender and breed and price, then 2 elements for Additional Product/Services 
+header, and 4 times 3 (=12) fields for each product/service.
+
+Puppy name is always second field of the item, so for first puppy that would be field with index
+1, for second puppy index 19 and so on, for puppy `k` it would be `k*18+1`.
