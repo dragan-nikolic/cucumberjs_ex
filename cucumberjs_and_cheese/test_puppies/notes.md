@@ -401,7 +401,7 @@ index you are correct.
 For example, to access shopping cart 'Your Litter' you can use WebdriverIO selector
 `'table tbody tr td'`:
 
-    `cartTableFields = browser.elements('table tbody tr td')`
+    cartTableFields = browser.elements('table tbody tr td')
 
 This call returns all `<td>` elements on the page, and each `<td>` element represent a field in the
 table.
