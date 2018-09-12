@@ -7,5 +7,5 @@ Before(async function (scenario) {
 
 After(async function (scenario) {
   console.log(`${scenario.result.status} scenario: ${scenario.pickle.name}`)
-  //await this.browser.end()
+  await this.browser.end()
 });

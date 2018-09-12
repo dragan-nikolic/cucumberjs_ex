@@ -38,7 +38,7 @@ Scenario: Validate cart with one puppy
   Then I should see the shopping cart with one puppy
   And The puppy name should be "Brook"
   And The subtotal should be "$34.95"
-  And The total should be "$34.95"
+  And The total for the cart should be "$34.95"
 
 Scenario: Validate cart with two puppies
   When I click the "first" View Details button
@@ -46,9 +46,10 @@ Scenario: Validate cart with two puppies
   And I click the Adopt Another Puppy button
   And I click the "second" View Details button
   And I click the Adopt Me button
+  # And I check the litter
   Then I should see the shopping cart with 2 puppies
   And The name of the "first" puppy should be "Brook"
   And The subtotal for "first" puppy should be "$34.95"
   And The name of the "second" puppy should be "Hanna"
-  And The subtotal for "second" puppy should be "$34.95"
-  And The total for the cart should be "$34.95"
+  And The subtotal for "second" puppy should be "$22.99"
+  And The total for the cart should be "$57.94"

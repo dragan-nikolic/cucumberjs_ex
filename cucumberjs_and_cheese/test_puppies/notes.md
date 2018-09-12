@@ -46,7 +46,7 @@ Is this ok? (yes)
 * Now run: `$ npm install cucumber --save`
 * Next, create following directory structure:
 
-```
+```text
   test_puppies
   +-+ features
     + step_definitions
@@ -80,7 +80,7 @@ Create feature file then run it: `$ ./node_modules/.bin/cucumber-js features/mak
 
 You should see output like this:
 
-```
+```bash
 λ npm test
 
 > simple_cuke@1.0.0 test C:\devh\github\cucumberjs_ex\cucumberjs_and_cheese\04_simple_cuke
@@ -134,7 +134,7 @@ Awesome! Let’s create a new file in the step_definitions directory named makin
 Copy the step definitions provided by cucumber to that file. When you run the cucumber
 command again you should see something slightly different.
 
-```
+```bash
 λ npm test features/making_cheese.feature
 
 > simple_cuke@1.0.0 test C:\devh\github\cucumberjs_ex\cucumberjs_and_cheese\04_simple_cuke
@@ -163,7 +163,7 @@ means "not yet fully implemented in code"). As a result it skipped the remaining
 cucumber runs into a step that is pending it does not continue running the scenario. We can easily
 resolve this. Let’s write some place-holder code to make the steps run.
 
-```
+```gherkin
 Given('I have no cheese', function () {
   console.log('I am so sad. I have no cheese :(')
 })
@@ -208,7 +208,7 @@ package.json.
 Then create a new file named adopting_puppies.feature in the features directory. Our feature file 
 should begin like this:
 
-```
+```gherkin
 Feature: Adopting puppies
 
   As a puppy lover
@@ -218,7 +218,7 @@ Feature: Adopting puppies
 
 This is a good start. Now we need to begin writing the first Scenario. Let’s start with this:
 
-```
+```gherkin
 Scenario: Adopting one puppy
   Given I am on the puppy adoption site
   When I click the View Details button
@@ -395,7 +395,7 @@ In each Scenario I would like you to validate the puppy’s name, the subtotal f
 the shopping cart total.
 
 The shopping cart data is stored in an html table. The table does not have an id, name, or any other
-identifier. What do you think you can use to locate the table? If you said index you are correct.
+identifier. What do you think you can use to locate the table? If you said tag you are correct.
 
 You can access the fields in a table by using rows and columns. For example, to access the first row
 and second column you would do the following:
