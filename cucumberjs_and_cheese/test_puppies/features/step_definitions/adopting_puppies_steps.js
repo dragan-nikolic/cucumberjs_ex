@@ -18,11 +18,13 @@ When('I check the litter', async function () {
   }
 })
 
-Given('I am on the puppy adoption site', async function () {
+// increaded timeout for this step because initial opening of the site
+// can sometimes take extra time
+Given('I am on the puppy adoption site', {timeout: 30000}, async function () {
   await this.browser.url('http://puppies.herokuapp.com/')
 })
 
-When('I click the {string} View Details button', {timeout: 30000}, async function (ordinalNumber) {
+When('I click the {string} View Details button', async function (ordinalNumber) {
   const elements = await this.browser.elements('[value="View Details"]')
   await this.browser.elementIdClick(elements.value[ordinalNumberToIndex[ordinalNumber]].ELEMENT)
 })
@@ -64,84 +66,30 @@ Then('I should see message {string}', async function (message) {
   assert(pageText.includes(message), 'Adoption failed!')
 })
 
-Then('I should see the shopping cart with one puppy', async function () {
-  await expectNumOfPuppiesInCartToBe(this.browser, 1)
+Then('I should see {string} as the name for line item {int}', async function (expectedValue, lineItem) {
+  const cartTable = await this.browser.elements('table tbody tr td')
+  const element = await this.browser.elementIdText(cartTable.value[(lineItem-1)*18+1].ELEMENT)
+  const actualValue = element.value.substring(0, element.value.length-1)
+  assert.equal(
+    actualValue, 
+    expectedValue, 
+    `Incorrect puppy name (${actualValue})!`)
 })
 
-Then('I should see the shopping cart with {int} puppies', async function (expectedValue) {
-  await expectNumOfPuppiesInCartToBe(this.browser, expectedValue)
+Then('I should see {string} as the subtotal for line item {int}', async function (expectedValue, lineItem) {
+  const cartTable = await this.browser.elements('table tbody tr td')
+  const element = await this.browser.elementIdText(cartTable.value[(lineItem-1)*18+3].ELEMENT)
+  const actualValue = element.value
+  assert.equal(
+    actualValue, 
+    expectedValue, 
+    `Incorrect subtotal for puppy (${actualValue})!`)
 })
 
-Then('The puppy name should be {string}', async function (expectedValue) {
-  await expectNameOfPuppyToBe(this.browser, 0, expectedValue) 
-})
-
-Then('The name of the {string} puppy should be {string}', async function (ordinalNumber, expectedValue) {
-  await expectNameOfPuppyToBe(this.browser, ordinalNumberToIndex[ordinalNumber], expectedValue) 
-})
-
-Then('The subtotal should be {string}', async function (expectedValue) {
-  await expectSubtotalForPuppyToBe(this.browser, 0, expectedValue)
-})
-
-Then('The subtotal for {string} puppy should be {string}', async function (ordinalNumber, expectedValue) {
-  await expectSubtotalForPuppyToBe(this.browser, ordinalNumberToIndex[ordinalNumber], expectedValue)
-})
-
-Then('The total for the cart should be {string}', async function (expectedValue) {
-  const actualValue = await getTotalForCart(this.browser)
+Then('I should see {string} as the cart total', async function (expectedValue) {
+  const actualValue = await this.browser.getText('.total_cell')
   assert.equal(
     actualValue, 
     expectedValue, 
     `Incorrect total for cart (${actualValue})!`)
 })
-
-// ===== helpers =====
-async function getNumberOfPuppiesInCart(browser) {
-  const cartRows = await browser.elements('table tbody tr')
-  return (cartRows.value.length-1)/6
-}
-
-async function expectNumOfPuppiesInCartToBe(browser, expectedValue) {
-  await browser.waitForExist('h2=Your Litter')
-  const actualValue = await getNumberOfPuppiesInCart(browser)
-  assert.equal(
-    actualValue, 
-    expectedValue, 
-    `There are incorrect number of puppies in the cart (${actualValue})!`)
-}
-
-async function getNameOfPuppy(browser, index) {
-  const cartTable = await browser.elements('table tbody tr td')
-  const element = await browser.elementIdText(cartTable.value[index*18+1].ELEMENT)
-  
-  return element.value.substring(0, element.value.length-1)
-}
-
-async function expectNameOfPuppyToBe(browser, index, expectedValue) {
-  const actualValue = await getNameOfPuppy(browser, index)
-  assert.equal(
-    actualValue, 
-    expectedValue, 
-    `Incorrect puppy name (${actualValue})!`)
-}
-
-async function getSubtotalForPuppy(browser, index) {
-  const cartTable = await browser.elements('table tbody tr td')
-  const element = await browser.elementIdText(cartTable.value[index*18+3].ELEMENT)
-  
-  return element.value
-}
-
-async function expectSubtotalForPuppyToBe(browser, index, expectedValue) {
-  const actualValue = await getSubtotalForPuppy(browser, index)
-  assert.equal(
-    actualValue, 
-    expectedValue, 
-    `Incorrect subtotal for puppy (${actualValue})!`)
-}
-
-async function getTotalForCart(browser) {
-  const total = await browser.getText('.total_cell')
-  return total
-}

@@ -400,14 +400,78 @@ index you are correct.
 
 For example, to access shopping cart 'Your Litter' you can use WebdriverIO selector
 `'table tbody tr td'`:
+
     `cartTableFields = browser.elements('table tbody tr td')`
 
 This call returns all `<td>` elements on the page, and each `<td>` element represent a field in the
 table.
 
-This table has 18 elements per item (i.e. per puppy). 4 elements for first row that contains
+The table has 18 elements per item (i.e. per puppy). 4 elements for first row that contains
 puppy image, name, gender and breed and price, then 2 elements for Additional Product/Services 
 header, and 4 times 3 (=12) fields for each product/service.
 
 Puppy name is always second field of the item, so for first puppy that would be field with index
 1, for second puppy index 19 and so on, for puppy `k` it would be `k*18+1`.
+
+The shopping cart "Total" can be accessed directly using the 'total_cell' class selector.
+
+Be aware! This is by far the most complex exercise we have done so far and I expect it to take a fair amount of time to complete.
+
+Try to complete this exercise on your own before looking at the completed scripts below.
+
+### The completed scripts ###
+
+Here are the Scenarios I came up with for this exercise:
+
+```gherkin
+Scenario: Validate cart with one puppy
+  When I click the "first" View Details button
+  And I click the Adopt Me button
+  Then I should see "Brook" as the name for line item 1
+  And I should see "$34.95" as the subtotal for line item 1
+  And I should see "$34.95" as the cart total
+
+Scenario: Validate cart with two puppies
+  When I click the "first" View Details button
+  And I click the Adopt Me button
+  And I click the Adopt Another Puppy button
+  And I click the "second" View Details button
+  And I click the Adopt Me button
+  Then I should see "Brook" as the name for line item 1
+  And I should see "$34.95" as the subtotal for line item 1
+  And I should see "Hanna" as the name for line item 2
+  And I should see "$22.99" as the subtotal for line item 2
+  And I should see "$57.94" as the cart total
+```
+
+These Scenarios caused me to write four new step definitions. Here they are:
+
+```javascript
+Then('I should see {string} as the name for line item {int}', async function (expectedValue, lineItem) {
+  const cartTable = await this.browser.elements('table tbody tr td')
+  const element = await this.browser.elementIdText(cartTable.value[(lineItem-1)*18+1].ELEMENT)
+  const actualValue = element.value.substring(0, element.value.length-1)
+  assert.equal(
+    actualValue, 
+    expectedValue, 
+    `Incorrect puppy name (${actualValue})!`)
+})
+
+Then('I should see {string} as the subtotal for line item {int}', async function (expectedValue, lineItem) {
+  const cartTable = await this.browser.elements('table tbody tr td')
+  const element = await this.browser.elementIdText(cartTable.value[(lineItem-1)*18+3].ELEMENT)
+  const actualValue = element.value
+  assert.equal(
+    actualValue, 
+    expectedValue, 
+    `Incorrect subtotal for puppy (${actualValue})!`)
+})
+
+Then('I should see {string} as the cart total', async function (expectedValue) {
+  const actualValue = await this.browser.getText('.total_cell')
+  assert.equal(
+    actualValue, 
+    expectedValue, 
+    `Incorrect total for cart (${actualValue})!`)
+})
+```
