@@ -67,9 +67,7 @@ Then('I should see message {string}', async function (message) {
 })
 
 Then('I should see {string} as the name for line item {int}', async function (expectedValue, lineItem) {
-  const cartTable = await this.browser.elements('table tbody tr td')
-  const element = await this.browser.elementIdText(cartTable.value[(lineItem-1)*18+1].ELEMENT)
-  const actualValue = element.value.substring(0, element.value.length-1)
+  const actualValue = await getCartLineItemField(this.browser, lineItem, 'name')
   assert.equal(
     actualValue, 
     expectedValue, 
@@ -77,9 +75,7 @@ Then('I should see {string} as the name for line item {int}', async function (ex
 })
 
 Then('I should see {string} as the subtotal for line item {int}', async function (expectedValue, lineItem) {
-  const cartTable = await this.browser.elements('table tbody tr td')
-  const element = await this.browser.elementIdText(cartTable.value[(lineItem-1)*18+3].ELEMENT)
-  const actualValue = element.value
+  const actualValue = await getCartLineItemField(this.browser, lineItem, 'subtotal')
   assert.equal(
     actualValue, 
     expectedValue, 
@@ -93,3 +89,16 @@ Then('I should see {string} as the cart total', async function (expectedValue) {
     expectedValue, 
     `Incorrect total for cart (${actualValue})!`)
 })
+
+// helpers
+async function getCartLineItemField(browser, lineItem, field) {
+  const fieldIndex = {
+    'name': 1,
+    'subtotal': 3
+  }
+
+  const cartTable = await browser.elements('table tbody tr td')
+  const element = await browser.elementIdText(
+    cartTable.value[(lineItem-1)*18+fieldIndex[field]].ELEMENT)
+  return element.value
+}

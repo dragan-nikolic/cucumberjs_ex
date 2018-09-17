@@ -475,3 +475,51 @@ Then('I should see {string} as the cart total', async function (expectedValue) {
     `Incorrect total for cart (${actualValue})!`)
 })
 ```
+
+### Removing the duplication ###
+
+There is some code duplication in the step definitions we just completed. There are many ways for us to eliminate this duplication but when confronted with several options I typically choose the simplest solution I can think of and then move to something more complicated when it is warranted. This philosophy comes from the Agile methodology called ["eXtreme Programming (XP)"](https://en.wikipedia.org/wiki/Extreme_programming), from which came the programming axiom ["Do the simplest thing that could possibly work"](http://c2.com/xp/DoTheSimplestThingThatCouldPossiblyWork.html).
+
+The simplest way to remove the duplication that I can think of here is to introduce a couple of methods. To keep things extremely simple we’ll just add the methods directly in our step definitions file.
+
+Let's eliminate duplication in the steps where we extract name and subtotal for a line item.
+
+We can create a helper function:
+
+```
+async function getCartLineItemField(browser, lineItem, field) {
+  const fieldIndex = {
+    'name': 1,
+    'subtotal': 3
+  }
+
+  const cartTable = await browser.elements('table tbody tr td')
+  const element = await browser.elementIdText(
+    cartTable.value[(lineItem-1)*18+fieldIndex[field]].ELEMENT)
+  return element.value
+}
+```
+
+and then modify steps:
+
+```
+Then('I should see {string} as the name for line item {int}', async function (expectedValue, lineItem) {
+  const actualValue = await getCartLineItemField(this.browser, lineItem, 'name')
+  assert.equal(
+    actualValue, 
+    expectedValue, 
+    `Incorrect puppy name (${actualValue})!`)
+})
+
+Then('I should see {string} as the subtotal for line item {int}', async function (expectedValue, lineItem) {
+  const actualValue = await getCartLineItemField(this.browser, lineItem, 'subtotal')
+  assert.equal(
+    actualValue, 
+    expectedValue, 
+    `Incorrect subtotal for puppy (${actualValue})!`)
+})
+```
+
+After we write this code we need to re-run the Scenario to ensure we didn’t break anything.
+
+### A page object for our shopping cart ###
