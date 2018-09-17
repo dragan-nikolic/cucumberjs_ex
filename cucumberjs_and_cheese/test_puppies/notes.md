@@ -486,7 +486,7 @@ Let's eliminate duplication in the steps where we extract name and subtotal for 
 
 We can create a helper function:
 
-```
+```javascript
 async function getCartLineItemField(browser, lineItem, field) {
   const fieldIndex = {
     'name': 1,
@@ -502,7 +502,7 @@ async function getCartLineItemField(browser, lineItem, field) {
 
 and then modify steps:
 
-```
+```javascript
 Then('I should see {string} as the name for line item {int}', async function (expectedValue, lineItem) {
   const actualValue = await getCartLineItemField(this.browser, lineItem, 'name')
   assert.equal(
