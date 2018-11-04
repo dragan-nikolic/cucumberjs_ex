@@ -1,7 +1,7 @@
 {
   "name": "basic_ex",
   "version": "1.0.0",
-  "description": "https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/",
+  "description": "https://github.com/dragan-nikolic/cucumberjs_ex",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/cucumber-js"
