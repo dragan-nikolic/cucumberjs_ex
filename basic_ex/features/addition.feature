@@ -1,18 +1,18 @@
 Feature: Addition
   @mytag @dev @stage
-  Scenario: 1 + 0
+  Scenario: add 1 + 0 is 1
     Given I start with 1
     When I add 0
     Then I end up with 1
 
   @mytag @all
-  Scenario: 1 + 1
+  Scenario: add 1 + 1 is 2
     Given I start with 1
     When I add 1
     Then I end up with 2
 
   # Second exmaple is supposed to fail
-  @wip @dev
+  @dev
   Scenario Outline: Add two numbers
     Given I start with <num1>
     When I add <num2>

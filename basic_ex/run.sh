@@ -8,5 +8,9 @@
 # $ ./run.sh stage
 # $ ./run.sh prod
 # $ ./run.sh stage features/<name>.feature
-#./node_modules/.bin/cucumber-js --tags '@$1 or @all' ${@:2}
-./node_modules/.bin/cucumber-js -p $1 ${@:2}
+# $ ./run.sh stage --tags smoke --format summary (run all smoke tests on stage env)
+./node_modules/.bin/cucumber-js \
+    -r ./steps -r ./support \
+    --tags 'not @wip' --tags 'not @manual' \
+    -p $1 \
+    ${@:2}
