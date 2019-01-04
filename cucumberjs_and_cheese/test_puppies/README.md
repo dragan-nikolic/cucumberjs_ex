@@ -1,8 +1,10 @@
-progress p.48 (4. Cucumkber & Puppies) 
-
 # Cucumberjs and Cheese
-Based on the book Cucumber and Cheese by Jeff Morgan.
-Testing http://puppies.herokuapp.com/
+Based on the book Cucumber and Cheese by Jeff Morgan. The main difference is
+using Javascript instead of Ruby.
+
+Fir more info refer to the cucumberjs_and_cheese.md.
+  
+Testing http://puppies.herokuapp.com/.
 
 ## Prerequisites ##
 * Nodejs version 8.9.4 or newer and NPM version 5.6.0 or newer
@@ -16,10 +18,10 @@ Testing http://puppies.herokuapp.com/
 * After the npm completes installation you can run the tests using cucumber
 
 ## How to run tests? ##
-* Run all test against the Staging environment using Chrome by default:
-$ ./run.sh stage
-* Run all test against the Production environment using Chrome by default:
-$ ./run.sh prod
+* Run all test using Chrome:
+$ ./run.sh chrome
+* Run all test using Firefox:
+$ ./run.sh firefox
 
 ## Useful links ##
 * [SmartBear CucumberJS](https://help.crossbrowsertesting.com/selenium-testing/frameworks/cucumber-js/)
