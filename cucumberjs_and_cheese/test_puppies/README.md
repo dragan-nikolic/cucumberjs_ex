@@ -14,8 +14,10 @@ Testing http://puppies.herokuapp.com/.
 * [WebdriverIO](http://webdriver.io/): WebDriver implementation by Christian Bromann
 
 ## How do I get set up? ###
-* Run: ```npm install```
-* After the npm completes installation you can run the tests using cucumber
+* Run only once: ```npm install```
+* Run only once: ```./node_modules/.bin/selenium-standalone install```
+* Run every time in one terminal: ```./node_modules/.bin/selenium-standalone start```
+* After that you can run tests in another terminal as explained below.
 
 ## How to run tests? ##
 * Run all test using Chrome:
