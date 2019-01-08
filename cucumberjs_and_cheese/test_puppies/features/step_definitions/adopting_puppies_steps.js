@@ -100,5 +100,9 @@ async function getCartLineItemField(browser, lineItem, field) {
   const cartTable = await browser.elements('table tbody tr td')
   const element = await browser.elementIdText(
     cartTable.value[(lineItem-1)*18+fieldIndex[field]].ELEMENT)
-  return element.value
+  return trimChar(element.value, ':')
+}
+
+function trimChar(str, ch) {
+  return str.replace(/^:+|:+$/gm, '')
 }
