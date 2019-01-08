@@ -104,5 +104,7 @@ async function getCartLineItemField (browser, lineItem, field) {
 }
 
 function trimChar (str, ch) {
-  return str.replace(/^:+|:+$/gm, '')
+  const replaceThis = new RegExp(`^${ch}+|${ch}+$`, 'gm')
+  const withThis = ''
+  return str.replace(replaceThis, withThis)
 }
