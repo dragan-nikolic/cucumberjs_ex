@@ -61,6 +61,11 @@ When('I click the Place Order button', async function () {
   await this.browser.click('[value="Place Order"]')
 })
 
+When('I select {string} product', async function (product) {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending';
+})
+
 Then('I should see message {string}', async function (message) {
   const pageText = await this.browser.getText('body')
   assert(pageText.includes(message), 'Adoption failed!')
@@ -91,6 +96,12 @@ Then('I should see {string} as the cart total', async function (expectedValue) {
 })
 
 // helpers
+function trimChar (str, ch) {
+  const replaceThis = new RegExp(`^${ch}+|${ch}+$`, 'gm')
+  const withThis = ''
+  return str.replace(replaceThis, withThis)
+}
+
 async function getCartLineItemField (browser, lineItem, field) {
   const fieldIndex = {
     'name': 1,
@@ -103,8 +114,15 @@ async function getCartLineItemField (browser, lineItem, field) {
   return trimChar(element.value, ':')
 }
 
-function trimChar (str, ch) {
-  const replaceThis = new RegExp(`^${ch}+|${ch}+$`, 'gm')
-  const withThis = ''
-  return str.replace(replaceThis, withThis)
+async function clickCartLineItemField (browser, lineItem, field) {
+  const fieldIndex = {
+    'name': 1,
+    'subtotal': 3,
+    'collar_and_leash_product': 5
+  }
+
+  const cartTable = await browser.elements('table tbody tr td')
+  const element = await browser.elementIdClick(
+    cartTable.value[(lineItem - 1) * 18 + fieldIndex[field]].ELEMENT)
+  return trimChar(element.value, ':')
 }

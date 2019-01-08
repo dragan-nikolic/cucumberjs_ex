@@ -522,4 +522,5 @@ Then('I should see {string} as the subtotal for line item {int}', async function
 
 After we write this code we need to re-run the Scenario to ensure we didn’t break anything.
 
-### A page object for our shopping cart ###
+### A page object for our shopping cart ### 
+page 66

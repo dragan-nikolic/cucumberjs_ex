@@ -17,7 +17,7 @@
   "dependencies": {
     "cucumber": "^4.2.1",
     "selenium-standalone": "^6.15.2",
-    "webdriverio": "^4.13.2"
+    "webdriverio": "^5.2.6"
   },
   "devDependencies": {
     "pre-push": "^0.1.1",

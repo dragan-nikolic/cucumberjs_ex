@@ -50,3 +50,11 @@ Scenario: Validate cart with two puppies
   And I should see "Hanna" as the name for line item 2
   And I should see "$22.99" as the subtotal for line item 2
   And I should see "$57.94" as the cart total
+
+Scenario: Validate cart with one puppy and additional products
+  When I click the "third" View Details button
+  And I click the Adopt Me button
+  And I select "Colar & Leash" product
+  Then I should see "Maggie Mae" as the name for line item 1
+  And I should see "$14.95" as the subtotal for line item 1
+  And I should see "$54.93" as the cart total
