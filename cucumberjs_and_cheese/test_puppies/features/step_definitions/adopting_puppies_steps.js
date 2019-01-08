@@ -1,4 +1,4 @@
-const {Given, When, Then} = require('cucumber')
+const { Given, When, Then } = require('cucumber')
 const assert = require('assert')
 
 const ordinalNumberToIndex = {
@@ -11,8 +11,8 @@ const ordinalNumberToIndex = {
 When('I check the litter', async function () {
   const tcells = await this.browser.elements('table tbody tr td')
 
-  for (let i=0; i<tcells.value.length; i++) {
-    //console.log(`cell ${i}`, tcells.value[i])
+  for (let i = 0; i < tcells.value.length; i++) {
+    // console.log(`cell ${i}`, tcells.value[i])
     const element = await this.browser.elementIdText(tcells.value[i].ELEMENT)
     console.log(`text ${i}`, element.value)
   }
@@ -20,7 +20,7 @@ When('I check the litter', async function () {
 
 // increaded timeout for this step because initial opening of the site
 // can sometimes take extra time
-Given('I am on the puppy adoption site', {timeout: 30000}, async function () {
+Given('I am on the puppy adoption site', { timeout: 30000 }, async function () {
   await this.browser.url('http://puppies.herokuapp.com/')
 })
 
@@ -68,30 +68,30 @@ Then('I should see message {string}', async function (message) {
 
 Then('I should see {string} as the name for line item {int}', async function (expectedValue, lineItem) {
   const actualValue = await getCartLineItemField(this.browser, lineItem, 'name')
-  assert.equal(
-    actualValue, 
-    expectedValue, 
+  assert.strict.equal(
+    actualValue,
+    expectedValue,
     `Incorrect puppy name (${actualValue})!`)
 })
 
 Then('I should see {string} as the subtotal for line item {int}', async function (expectedValue, lineItem) {
   const actualValue = await getCartLineItemField(this.browser, lineItem, 'subtotal')
-  assert.equal(
-    actualValue, 
-    expectedValue, 
+  assert.strict.equal(
+    actualValue,
+    expectedValue,
     `Incorrect subtotal for puppy (${actualValue})!`)
 })
 
 Then('I should see {string} as the cart total', async function (expectedValue) {
   const actualValue = await this.browser.getText('.total_cell')
-  assert.equal(
-    actualValue, 
-    expectedValue, 
+  assert.strict.equal(
+    actualValue,
+    expectedValue,
     `Incorrect total for cart (${actualValue})!`)
 })
 
 // helpers
-async function getCartLineItemField(browser, lineItem, field) {
+async function getCartLineItemField (browser, lineItem, field) {
   const fieldIndex = {
     'name': 1,
     'subtotal': 3
@@ -99,10 +99,10 @@ async function getCartLineItemField(browser, lineItem, field) {
 
   const cartTable = await browser.elements('table tbody tr td')
   const element = await browser.elementIdText(
-    cartTable.value[(lineItem-1)*18+fieldIndex[field]].ELEMENT)
+    cartTable.value[(lineItem - 1) * 18 + fieldIndex[field]].ELEMENT)
   return trimChar(element.value, ':')
 }
 
-function trimChar(str, ch) {
+function trimChar (str, ch) {
   return str.replace(/^:+|:+$/gm, '')
 }
