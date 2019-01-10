@@ -62,8 +62,7 @@ When('I click the Place Order button', async function () {
 })
 
 When('I select {string} product', async function (product) {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+  await clickCartLineItemField(this.browser, 3, )
 })
 
 Then('I should see message {string}', async function (message) {
@@ -122,7 +121,7 @@ async function clickCartLineItemField (browser, lineItem, field) {
   }
 
   const cartTable = await browser.elements('table tbody tr td')
-  const element = await browser.elementIdClick(
+  const result = await browser.elementIdClick(
     cartTable.value[(lineItem - 1) * 18 + fieldIndex[field]].ELEMENT)
-  return trimChar(element.value, ':')
+  consoile.log('********result****************', result)
 }
